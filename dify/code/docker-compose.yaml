@@ -466,9 +466,9 @@ services:
     depends_on:
       - api
       - web
-    ports:
-      - '${EXPOSE_NGINX_PORT:-80}:${NGINX_PORT:-80}'
-      - '${EXPOSE_NGINX_SSL_PORT:-443}:${NGINX_SSL_PORT:-443}'
+    #ports:
+    #  - '${EXPOSE_NGINX_PORT:-80}:${NGINX_PORT:-80}'
+    #  - '${EXPOSE_NGINX_SSL_PORT:-443}:${NGINX_SSL_PORT:-443}'
 
   # The Weaviate vector store.
   weaviate:
@@ -523,7 +523,7 @@ services:
       - COUCHBASE_INDEX_RAM_SIZE=512
       - COUCHBASE_FTS_RAM_SIZE=1024
     hostname: couchbase-server
-    container_name: couchbase-server
+    #container_name: couchbase-server
     working_dir: /opt/couchbase
     stdin_open: true
     tty: true
@@ -625,7 +625,7 @@ services:
 
   # Milvus vector database services
   etcd:
-    container_name: milvus-etcd
+    #container_name: milvus-etcd
     image: quay.io/coreos/etcd:v3.5.5
     profiles:
       - milvus
@@ -646,7 +646,7 @@ services:
       - milvus
 
   minio:
-    container_name: milvus-minio
+    #container_name: milvus-minio
     image: minio/minio:RELEASE.2023-03-20T20-16-18Z
     profiles:
       - milvus
@@ -665,7 +665,7 @@ services:
       - milvus
 
   milvus-standalone:
-    container_name: milvus-standalone
+    #container_name: milvus-standalone
     image: milvusdb/milvus:v2.3.1
     profiles:
       - milvus
@@ -685,15 +685,15 @@ services:
     depends_on:
       - etcd
       - minio
-    ports:
-      - 19530:19530
-      - 9091:9091
+    #ports:
+    #  - 19530:19530
+    #  - 9091:9091
     networks:
       - milvus
 
   # Opensearch vector database
   opensearch:
-    container_name: opensearch
+    #container_name: opensearch
     image: opensearchproject/opensearch:latest
     profiles:
       - opensearch
@@ -715,7 +715,7 @@ services:
       - opensearch-net
 
   opensearch-dashboards:
-    container_name: opensearch-dashboards
+    #container_name: opensearch-dashboards
     image: opensearchproject/opensearch-dashboards:latest
     profiles:
       - opensearch
@@ -730,7 +730,7 @@ services:
 
   # MyScale vector database
   myscale:
-    container_name: myscale
+    #container_name: myscale
     image: myscale/myscaledb:1.6.4
     profiles:
       - myscale
@@ -740,14 +740,14 @@ services:
       - ./volumes/myscale/data:/var/lib/clickhouse
       - ./volumes/myscale/log:/var/log/clickhouse-server
       - ./volumes/myscale/config/users.d/custom_users_config.xml:/etc/clickhouse-server/users.d/custom_users_config.xml
-    ports:
-      - ${MYSCALE_PORT:-8123}:${MYSCALE_PORT:-8123}
+    #ports:
+    #  - ${MYSCALE_PORT:-8123}:${MYSCALE_PORT:-8123}
 
   # https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
   # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-prod-prerequisites
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.14.3
-    container_name: elasticsearch
+    #container_name: elasticsearch
     profiles:
       - elasticsearch
     restart: always
@@ -762,8 +762,8 @@ services:
       xpack.security.enabled: 'true'
       xpack.security.enrollment.enabled: 'false'
       xpack.security.http.ssl.enabled: 'false'
-    ports:
-      - ${ELASTICSEARCH_PORT:-9200}:9200
+    #ports:
+    #  - ${ELASTICSEARCH_PORT:-9200}:9200
     healthcheck:
       test: ['CMD', 'curl', '-s', 'http://localhost:9200/_cluster/health?pretty']
       interval: 30s
@@ -774,7 +774,7 @@ services:
   # https://www.elastic.co/guide/en/kibana/current/settings.html
   kibana:
     image: docker.elastic.co/kibana/kibana:8.14.3
-    container_name: kibana
+    #container_name: kibana
     profiles:
       - elasticsearch
     depends_on:
@@ -790,8 +790,8 @@ services:
       I18N_LOCALE: zh-CN
       SERVER_PORT: '5601'
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
-    ports:
-      - ${KIBANA_PORT:-5601}:5601
+    #ports:
+    #  - ${KIBANA_PORT:-5601}:5601
     healthcheck:
       test: ['CMD-SHELL', 'curl -s http://localhost:5601 >/dev/null || exit 1']
       interval: 30s
