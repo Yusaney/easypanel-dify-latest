@@ -53,31 +53,45 @@ modify_for_easypanel() {
     # Create a temporary file
     temp_file=$(mktemp)
     
-    # Process the file line by line
+    # Process the file line by line with improved port detection
     awk '
-    BEGIN { in_ports = 0; skip_line = 0; }
+    BEGIN { 
+        in_ports = 0
+        in_service = 0
+        indent = ""
+    }
     {
+        # Track service level indentation
+        if ($1 ~ /:$/ && !in_ports) {
+            in_service = 1
+            indent = "  "  # Base service indentation
+        }
+        
         # Skip container_name lines
         if ($1 == "container_name:") {
             next
         }
         
-        # Handle ports sections
-        if ($1 == "ports:") {
-            print "    # ports:"
+        # Detect ports section at any indentation level
+        if ($0 ~ /^[[:space:]]*ports:/) {
+            print indent "# " $0
             in_ports = 1
             next
         }
         
-        # If we are in a ports section, comment out the lines
-        if (in_ports && $1 ~ /^[[:space:]]*-/) {
-            print "    #" $0
-            next
-        }
-        
-        # If we hit a line that is not indented more than ports, we are out of the ports section
-        if (in_ports && $1 !~ /^[[:space:]]*-/) {
-            in_ports = 0
+        # If in ports section, comment out any line starting with a dash or containing port mappings
+        if (in_ports) {
+            # Detect if we are still in the ports section based on indentation
+            if ($0 ~ /^[[:space:]]*[^[:space:]]/ && !($0 ~ /^[[:space:]]*-/)) {
+                in_ports = 0
+                print $0
+                next
+            }
+            # Comment out port entries
+            if ($0 ~ /^[[:space:]]*-/) {
+                print indent "# " $0
+                next
+            }
         }
         
         # Print all other lines normally
