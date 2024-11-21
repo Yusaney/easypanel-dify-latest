@@ -117,7 +117,7 @@ x-shared-env: &shared-api-worker-env
   QDRANT_API_KEY: ${QDRANT_API_KEY:-difyai123456}
   QDRANT_CLIENT_TIMEOUT: ${QDRANT_CLIENT_TIMEOUT:-20}
   QDRANT_GRPC_ENABLED: ${QDRANT_GRPC_ENABLED:-false}
-  QDRANT_GRPC_: ${QDRANT_GRPC_:-6334}
+  QDRANT_GRPC_PORT: ${QDRANT_GRPC_PORT:-6334}
   COUCHBASE_CONNECTION_STRING: ${COUCHBASE_CONNECTION_STRING:-'couchbase-server'}
   COUCHBASE_USER: ${COUCHBASE_USER:-Administrator}
   COUCHBASE_PASSWORD: ${COUCHBASE_PASSWORD:-password}
@@ -128,23 +128,23 @@ x-shared-env: &shared-api-worker-env
   MILVUS_USER: ${MILVUS_USER:-root}
   MILVUS_PASSWORD: ${MILVUS_PASSWORD:-Milvus}
   MYSCALE_HOST: ${MYSCALE_HOST:-myscale}
-  MYSCALE_: ${MYSCALE_:-8123}
+  MYSCALE_PORT: ${MYSCALE_PORT:-8123}
   MYSCALE_USER: ${MYSCALE_USER:-default}
   MYSCALE_PASSWORD: ${MYSCALE_PASSWORD:-}
   MYSCALE_DATABASE: ${MYSCALE_DATABASE:-dify}
   MYSCALE_FTS_PARAMS: ${MYSCALE_FTS_PARAMS:-}
   RELYT_HOST: ${RELYT_HOST:-db}
-  RELYT_: ${RELYT_:-5432}
+  RELYT_PORT: ${RELYT_PORT:-5432}
   RELYT_USER: ${RELYT_USER:-postgres}
   RELYT_PASSWORD: ${RELYT_PASSWORD:-difyai123456}
   RELYT_DATABASE: ${RELYT_DATABASE:-postgres}
   PGVECTOR_HOST: ${PGVECTOR_HOST:-pgvector}
-  PGVECTOR_: ${PGVECTOR_:-5432}
+  PGVECTOR_PORT: ${PGVECTOR_PORT:-5432}
   PGVECTOR_USER: ${PGVECTOR_USER:-postgres}
   PGVECTOR_PASSWORD: ${PGVECTOR_PASSWORD:-difyai123456}
   PGVECTOR_DATABASE: ${PGVECTOR_DATABASE:-dify}
   TIDB_VECTOR_HOST: ${TIDB_VECTOR_HOST:-tidb}
-  TIDB_VECTOR_: ${TIDB_VECTOR_:-4000}
+  TIDB_VECTOR_PORT: ${TIDB_VECTOR_PORT:-4000}
   TIDB_VECTOR_USER: ${TIDB_VECTOR_USER:-}
   TIDB_VECTOR_PASSWORD: ${TIDB_VECTOR_PASSWORD:-}
   TIDB_VECTOR_DATABASE: ${TIDB_VECTOR_DATABASE:-dify}
@@ -152,7 +152,7 @@ x-shared-env: &shared-api-worker-env
   TIDB_ON_QDRANT_API_KEY: ${TIDB_ON_QDRANT_API_KEY:-dify}
   TIDB_ON_QDRANT_CLIENT_TIMEOUT: ${TIDB_ON_QDRANT_CLIENT_TIMEOUT:-20}
   TIDB_ON_QDRANT_GRPC_ENABLED: ${TIDB_ON_QDRANT_GRPC_ENABLED:-false}
-  TIDB_ON_QDRANT_GRPC_: ${TIDB_ON_QDRANT_GRPC_:-6334}
+  TIDB_ON_QDRANT_GRPC_PORT: ${TIDB_ON_QDRANT_GRPC_PORT:-6334}
   TIDB_PUBLIC_KEY: ${TIDB_PUBLIC_KEY:-dify}
   TIDB_PRIVATE_KEY: ${TIDB_PRIVATE_KEY:-dify}
   TIDB_API_URL: ${TIDB_API_URL:-http://127.0.0.1}
@@ -161,24 +161,24 @@ x-shared-env: &shared-api-worker-env
   TIDB_PROJECT_ID: ${TIDB_PROJECT_ID:-dify}
   TIDB_SPEND_LIMIT: ${TIDB_SPEND_LIMIT:-100}
   ORACLE_HOST: ${ORACLE_HOST:-oracle}
-  ORACLE_: ${ORACLE_:-1521}
+  ORACLE_PORT: ${ORACLE_PORT:-1521}
   ORACLE_USER: ${ORACLE_USER:-dify}
   ORACLE_PASSWORD: ${ORACLE_PASSWORD:-dify}
   ORACLE_DATABASE: ${ORACLE_DATABASE:-FREEPDB1}
   CHROMA_HOST: ${CHROMA_HOST:-127.0.0.1}
-  CHROMA_: ${CHROMA_:-8000}
+  CHROMA_PORT: ${CHROMA_PORT:-8000}
   CHROMA_TENANT: ${CHROMA_TENANT:-default_tenant}
   CHROMA_DATABASE: ${CHROMA_DATABASE:-default_database}
   CHROMA_AUTH_PROVIDER: ${CHROMA_AUTH_PROVIDER:-chromadb.auth.token_authn.TokenAuthClientProvider}
   CHROMA_AUTH_CREDENTIALS: ${CHROMA_AUTH_CREDENTIALS:-}
   ELASTICSEARCH_HOST: ${ELASTICSEARCH_HOST:-0.0.0.0}
-  ELASTICSEARCH_: ${ELASTICSEARCH_:-9200}
+  ELASTICSEARCH_PORT: ${ELASTICSEARCH_PORT:-9200}
   ELASTICSEARCH_USERNAME: ${ELASTICSEARCH_USERNAME:-elastic}
   ELASTICSEARCH_PASSWORD: ${ELASTICSEARCH_PASSWORD:-elastic}
   LINDORM_URL: ${LINDORM_URL:-http://lindorm:30070}
   LINDORM_USERNAME: ${LINDORM_USERNAME:-lindorm}
   LINDORM_PASSWORD: ${LINDORM_USERNAME:-lindorm }
-  KIBANA_: ${KIBANA_:-5601}
+  KIBANA_PORT: ${KIBANA_PORT:-5601}
   # AnalyticDB configuration
   ANALYTICDB_KEY_ID: ${ANALYTICDB_KEY_ID:-}
   ANALYTICDB_KEY_SECRET: ${ANALYTICDB_KEY_SECRET:-}
@@ -189,11 +189,11 @@ x-shared-env: &shared-api-worker-env
   ANALYTICDB_NAMESPACE: ${ANALYTICDB_NAMESPACE:-dify}
   ANALYTICDB_NAMESPACE_PASSWORD: ${ANALYTICDB_NAMESPACE_PASSWORD:-}
   ANALYTICDB_HOST: ${ANALYTICDB_HOST:-}
-  ANALYTICDB_: ${ANALYTICDB_:-5432}
+  ANALYTICDB_PORT: ${ANALYTICDB_PORT:-5432}
   ANALYTICDB_MIN_CONNECTION: ${ANALYTICDB_MIN_CONNECTION:-1}
   ANALYTICDB_MAX_CONNECTION: ${ANALYTICDB_MAX_CONNECTION:-5}
   OPENSEARCH_HOST: ${OPENSEARCH_HOST:-opensearch}
-  OPENSEARCH_: ${OPENSEARCH_:-9200}
+  OPENSEARCH_PORT: ${OPENSEARCH_PORT:-9200}
   OPENSEARCH_USER: ${OPENSEARCH_USER:-admin}
   OPENSEARCH_PASSWORD: ${OPENSEARCH_PASSWORD:-admin}
   OPENSEARCH_SECURE: ${OPENSEARCH_SECURE:-true}
@@ -239,11 +239,11 @@ x-shared-env: &shared-api-worker-env
   MAIL_TYPE: ${MAIL_TYPE:-resend}
   MAIL_DEFAULT_SEND_FROM: ${MAIL_DEFAULT_SEND_FROM:-}
   SMTP_SERVER: ${SMTP_SERVER:-}
-  SMTP_: ${SMTP_:-465}
+  SMTP_PORT: ${SMTP_PORT:-465}
   SMTP_USERNAME: ${SMTP_USERNAME:-}
   SMTP_PASSWORD: ${SMTP_PASSWORD:-}
   SMTP_USE_TLS: ${SMTP_USE_TLS:-true}
-  SMTP_OPUNISTIC_TLS: ${SMTP_OPUNISTIC_TLS:-false}
+  SMTP_OPPORTUNISTIC_TLS: ${SMTP_OPPORTUNISTIC_TLS:-false}
   RESEND_API_KEY: ${RESEND_API_KEY:-your-resend-api-key}
   RESEND_API_URL: ${RESEND_API_URL:-https://api.resend.com}
   INDEXING_MAX_SEGMENTATION_TOKENS_LENGTH: ${INDEXING_MAX_SEGMENTATION_TOKENS_LENGTH:-1000}
@@ -279,7 +279,7 @@ x-shared-env: &shared-api-worker-env
   POSITION_PROVIDER_EXCLUDES: ${POSITION_PROVIDER_EXCLUDES:-}
   MAX_VARIABLE_SIZE: ${MAX_VARIABLE_SIZE:-204800}
   OCEANBASE_VECTOR_HOST: ${OCEANBASE_VECTOR_HOST:-http://oceanbase-vector}
-  OCEANBASE_VECTOR_: ${OCEANBASE_VECTOR_:-2881}
+  OCEANBASE_VECTOR_PORT: ${OCEANBASE_VECTOR_PORT:-2881}
   OCEANBASE_VECTOR_USER: ${OCEANBASE_VECTOR_USER:-root@test}
   OCEANBASE_VECTOR_PASSWORD: ${OCEANBASE_VECTOR_PASSWORD:-difyai123456}
   OCEANBASE_VECTOR_DATABASE: ${OCEANBASE_VECTOR_DATABASE:-test}
@@ -390,7 +390,7 @@ services:
       ENABLE_NETWORK: ${SANDBOX_ENABLE_NETWORK:-true}
       HTTP_PROXY: ${SANDBOX_HTTP_PROXY:-http://ssrf_proxy:3128}
       HTTPS_PROXY: ${SANDBOX_HTTPS_PROXY:-http://ssrf_proxy:3128}
-      SANDBOX_: ${SANDBOX_:-8194}
+      SANDBOX_PORT: ${SANDBOX_PORT:-8194}
     volumes:
       - ./volumes/sandbox/dependencies:/dependencies
     healthcheck:
@@ -415,11 +415,11 @@ services:
       ]
     environment:
       # pls clearly modify the squid env vars to fit your network environment.
-      HTTP_: ${SSRF_HTTP_:-3128}
+      HTTP_PORT: ${SSRF_HTTP_PORT:-3128}
       COREDUMP_DIR: ${SSRF_COREDUMP_DIR:-/var/spool/squid}
-      REVERSE_PROXY_: ${SSRF_REVERSE_PROXY_:-8194}
+      REVERSE_PROXY_PORT: ${SSRF_REVERSE_PROXY_PORT:-8194}
       SANDBOX_HOST: ${SSRF_SANDBOX_HOST:-sandbox}
-      SANDBOX_: ${SANDBOX_:-8194}
+      SANDBOX_PORT: ${SANDBOX_PORT:-8194}
     networks:
       - ssrf_proxy_network
       - default
@@ -468,8 +468,8 @@ services:
     environment:
       NGINX_SERVER_NAME: ${NGINX_SERVER_NAME:-_}
       NGINX_HTTPS_ENABLED: ${NGINX_HTTPS_ENABLED:-false}
-      NGINX_SSL_: ${NGINX_SSL_:-443}
-      NGINX_: ${NGINX_:-80}
+      NGINX_SSL_PORT: ${NGINX_SSL_PORT:-443}
+      NGINX_PORT: ${NGINX_PORT:-80}
       # You're required to add your own SSL certificates/keys to the `./nginx/ssl` directory
       # and modify the env vars below in .env if HTTPS_ENABLED is true.
       NGINX_SSL_CERT_FILENAME: ${NGINX_SSL_CERT_FILENAME:-dify.crt}
@@ -485,9 +485,9 @@ services:
     depends_on:
       - api
       - web
-    #ports:
-    #  - '${EXPOSE_NGINX_PORT:-80}:${NGINX_PORT:-80}'
-    #  - '${EXPOSE_NGINX_SSL_PORT:-443}:${NGINX_SSL_PORT:-443}'
+    ports:
+      - '${EXPOSE_NGINX_PORT:-80}:${NGINX_PORT:-80}'
+      - '${EXPOSE_NGINX_SSL_PORT:-443}:${NGINX_SSL_PORT:-443}'
 
   # The Weaviate vector store.
   weaviate:
@@ -542,7 +542,7 @@ services:
       - COUCHBASE_INDEX_RAM_SIZE=512
       - COUCHBASE_FTS_RAM_SIZE=1024
     hostname: couchbase-server
-    #container_name: couchbase-server
+    container_name: couchbase-server
     working_dir: /opt/couchbase
     stdin_open: true
     tty: true
@@ -649,7 +649,7 @@ services:
 
   # Milvus vector database services
   etcd:
-    #container_name: milvus-etcd
+    container_name: milvus-etcd
     image: quay.io/coreos/etcd:v3.5.5
     profiles:
       - milvus
@@ -670,7 +670,7 @@ services:
       - milvus
 
   minio:
-    #container_name: milvus-minio
+    container_name: milvus-minio
     image: minio/minio:RELEASE.2023-03-20T20-16-18Z
     profiles:
       - milvus
@@ -689,7 +689,7 @@ services:
       - milvus
 
   milvus-standalone:
-    #container_name: milvus-standalone
+    container_name: milvus-standalone
     image: milvusdb/milvus:v2.3.1
     profiles:
       - milvus
@@ -709,15 +709,15 @@ services:
     depends_on:
       - etcd
       - minio
-    #ports:
-    #  - 19530:19530
-    #  - 9091:9091
+    ports:
+      - 19530:19530
+      - 9091:9091
     networks:
       - milvus
 
   # Opensearch vector database
   opensearch:
-    #container_name: opensearch
+    container_name: opensearch
     image: opensearchproject/opensearch:latest
     profiles:
       - opensearch
@@ -739,7 +739,7 @@ services:
       - opensearch-net
 
   opensearch-dashboards:
-    #container_name: opensearch-dashboards
+    container_name: opensearch-dashboards
     image: opensearchproject/opensearch-dashboards:latest
     profiles:
       - opensearch
@@ -754,7 +754,7 @@ services:
 
   # MyScale vector database
   myscale:
-    #container_name: myscale
+    container_name: myscale
     image: myscale/myscaledb:1.6.4
     profiles:
       - myscale
@@ -764,14 +764,14 @@ services:
       - ./volumes/myscale/data:/var/lib/clickhouse
       - ./volumes/myscale/log:/var/log/clickhouse-server
       - ./volumes/myscale/config/users.d/custom_users_config.xml:/etc/clickhouse-server/users.d/custom_users_config.xml
-    #ports:
-    #  - ${MYSCALE_PORT:-8123}:${MYSCALE_PORT:-8123}
+    ports:
+      - ${MYSCALE_PORT:-8123}:${MYSCALE_PORT:-8123}
 
   # https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
   # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-prod-prerequisites
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.14.3
-    #container_name: elasticsearch
+    container_name: elasticsearch
     profiles:
       - elasticsearch
     restart: always
@@ -786,8 +786,8 @@ services:
       xpack.security.enabled: 'true'
       xpack.security.enrollment.enabled: 'false'
       xpack.security.http.ssl.enabled: 'false'
-    #ports:
-    #  - ${ELASTICSEARCH_PORT:-9200}:9200
+    ports:
+      - ${ELASTICSEARCH_PORT:-9200}:9200
     healthcheck:
       test: ['CMD', 'curl', '-s', 'http://localhost:9200/_cluster/health?pretty']
       interval: 30s
@@ -798,7 +798,7 @@ services:
   # https://www.elastic.co/guide/en/kibana/current/settings.html
   kibana:
     image: docker.elastic.co/kibana/kibana:8.14.3
-    #container_name: kibana
+    container_name: kibana
     profiles:
       - elasticsearch
     depends_on:
@@ -814,8 +814,8 @@ services:
       I18N_LOCALE: zh-CN
       SERVER_PORT: '5601'
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
-    #ports:
-    #  - ${KIBANA_PORT:-5601}:5601
+    ports:
+      - ${KIBANA_PORT:-5601}:5601
     healthcheck:
       test: ['CMD-SHELL', 'curl -s http://localhost:5601 >/dev/null || exit 1']
       interval: 30s
